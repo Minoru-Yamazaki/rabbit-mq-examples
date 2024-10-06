@@ -1,10 +1,11 @@
 package com.example.rabbitmq.inbound.fachada;
 
 
-import com.example.rabbitmq.core.dto.WorkQueueMessageDto;
+import com.example.rabbitmq.inbound.dto.WorkQueueMessageDto;
 import com.example.rabbitmq.core.mensageria.Mensageria;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 public class WorkQueueService {
 
     @Autowired
+    @Qualifier("work_queues")
     private Mensageria mensageria;
 
     @Value("${rabbitmq.queue.one.exchange}")
