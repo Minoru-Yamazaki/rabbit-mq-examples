@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
 
 @Configuration
 @ComponentScan(basePackages = "com.example.rabbitmq.outbound.mensageria.workqueues")
@@ -15,8 +14,8 @@ public class WorkQueuesConfig {
     private String queueOne;
 
     // Dead Letter Queue (DLQ)
-    @Value("${rabbitmq.queue.one.dql-name}")
-    private String queueOneDQL;
+    @Value("${rabbitmq.queue.one.dlq-name}")
+    private String queueOneDLQ;
 
     @Value("${rabbitmq.queue.one.exchange}")
     private String queueOneExchangeName;
@@ -25,17 +24,16 @@ public class WorkQueuesConfig {
     private String queueOneRoutingKey;
 
     @Bean
-    @Primary
     public Queue queueOne() {
         return QueueBuilder.durable(queueOne)
                 .withArgument("x-dead-letter-exchange", "") // DLX (Dead Letter Exchange) padrão
-                .withArgument("x-dead-letter-routing-key", queueOneDQL) // Definindo a DLQ
+                .withArgument("x-dead-letter-routing-key", queueOneDLQ) // Definindo a DLQ
                 .build();
     }
 
     @Bean
-    public Queue queueOneDQL() {
-        return new Queue(queueOneDQL, true); // DLQ durável
+    public Queue queueOneDLQ() {
+        return new Queue(queueOneDLQ, true); // DLQ durável
     }
 
     @Bean
@@ -44,8 +42,8 @@ public class WorkQueuesConfig {
     }
 
     @Bean
-    public Binding binding(Queue queue, TopicExchange exchange) {
-        return BindingBuilder.bind(queue).to(exchange).with(queueOneRoutingKey);
+    public Binding binding(Queue queueOne, TopicExchange queueOneTopicExchange) {
+        return BindingBuilder.bind(queueOne).to(queueOneTopicExchange).with(queueOneRoutingKey);
     }
 
 }

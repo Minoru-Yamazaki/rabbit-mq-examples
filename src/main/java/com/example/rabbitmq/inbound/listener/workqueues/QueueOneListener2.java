@@ -28,8 +28,8 @@ public class QueueOneListener2 {
         } catch (IOException e) {
             System.out.println("Falha ao confirmar processamento da mensagem");
             try {
-                // Rejeita a mensagem e reencaminha para a fila para ser processada novamente
-                channel.basicNack(amqpMessage.getMessageProperties().getDeliveryTag(), false, true);
+                // Rejeita a mensagem e a envia para a Dead Letter Queue (DLQ)
+                channel.basicReject(amqpMessage.getMessageProperties().getDeliveryTag(), false);
                 System.out.println("Mensagem reencaminhada para a fila: " + message);
             } catch (Exception ex) {
                 System.out.println("Falha ao enviar nack: " + ex.getMessage());
