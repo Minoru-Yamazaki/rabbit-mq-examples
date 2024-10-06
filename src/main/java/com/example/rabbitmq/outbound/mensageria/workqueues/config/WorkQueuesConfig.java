@@ -24,7 +24,6 @@ public class WorkQueuesConfig {
     @Value("${rabbitmq.queue.one.routing-key}")
     private String queueOneRoutingKey;
 
-
     @Bean
     @Primary
     public Queue queueOne() {
@@ -48,4 +47,5 @@ public class WorkQueuesConfig {
     public Binding binding(Queue queue, TopicExchange exchange) {
         return BindingBuilder.bind(queue).to(exchange).with(queueOneRoutingKey);
     }
+
 }
