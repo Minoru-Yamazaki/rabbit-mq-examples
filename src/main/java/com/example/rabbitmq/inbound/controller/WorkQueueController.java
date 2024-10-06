@@ -1,6 +1,6 @@
 package com.example.rabbitmq.inbound.controller;
 
-import com.example.rabbitmq.core.dto.MensagemDto;
+import com.example.rabbitmq.core.dto.WorkQueueMessageDto;
 import com.example.rabbitmq.inbound.fachada.WorkQueueService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +17,7 @@ public class WorkQueueController {
     private WorkQueueService service;
 
     @PostMapping
-    public ResponseEntity sendTwice(@RequestBody MensagemDto mensagem){
+    public ResponseEntity sendTwice(@RequestBody WorkQueueMessageDto mensagem){
         service.sendTwice(mensagem);
         return ResponseEntity.ok().build();
     }

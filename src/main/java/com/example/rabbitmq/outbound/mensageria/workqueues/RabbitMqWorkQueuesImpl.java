@@ -1,6 +1,6 @@
 package com.example.rabbitmq.outbound.mensageria.workqueues;
 
-import com.example.rabbitmq.core.dto.MensagemDto;
+import com.example.rabbitmq.core.dto.WorkQueueMessageDto;
 import com.example.rabbitmq.core.mensageria.Mensageria;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -12,14 +12,14 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @Component
 @AllArgsConstructor
-public class RabbitMqWorkQueuesImpl implements Mensageria<MensagemDto> {
+public class RabbitMqWorkQueuesImpl implements Mensageria<WorkQueueMessageDto> {
 
     private RabbitTemplate rabbitTemplate;
 
     private ObjectMapper objectMapper;
 
     @Override
-    public void send(String exchangeName, String routingKey, MensagemDto mensage) {
+    public void send(String exchangeName, String routingKey, WorkQueueMessageDto mensage) {
         try {
             log.info("writing value as String: {}", mensage);
             String stringMessage = objectMapper.writeValueAsString(mensage);

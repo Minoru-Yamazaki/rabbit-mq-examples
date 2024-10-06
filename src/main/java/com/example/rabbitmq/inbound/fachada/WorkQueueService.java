@@ -1,7 +1,7 @@
 package com.example.rabbitmq.inbound.fachada;
 
 
-import com.example.rabbitmq.core.dto.MensagemDto;
+import com.example.rabbitmq.core.dto.WorkQueueMessageDto;
 import com.example.rabbitmq.core.mensageria.Mensageria;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,7 @@ public class WorkQueueService {
     @Value("${rabbitmq.queue.one.routing-key}")
     private String routingKey;
 
-    public void sendTwice(MensagemDto dto){
+    public void sendTwice(WorkQueueMessageDto dto){
         log.info("Sending message for the first time");
         mensageria.send(exchangeName, routingKey, dto);
         log.info("Sending message for the second time");

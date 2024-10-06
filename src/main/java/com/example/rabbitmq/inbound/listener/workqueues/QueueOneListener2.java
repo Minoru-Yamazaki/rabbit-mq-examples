@@ -1,6 +1,6 @@
 package com.example.rabbitmq.inbound.listener.workqueues;
 
-import com.example.rabbitmq.core.entity.Mensagem;
+import com.example.rabbitmq.core.entity.WorkQueueMessage;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rabbitmq.client.Channel;
@@ -20,7 +20,7 @@ public class QueueOneListener2 {
     @RabbitListener(queues = "${rabbitmq.queue.one.name}")
     public void receiveMessage(String message, Channel channel, Message amqpMessage) {
         try {
-            Mensagem mensagem = objectMapper.readValue(message, Mensagem.class);
+            WorkQueueMessage mensagem = objectMapper.readValue(message, WorkQueueMessage.class);
             System.out.println("Listener 2: " + mensagem);
             channel.basicAck(amqpMessage.getMessageProperties().getDeliveryTag(), false);
         } catch (JsonProcessingException e) {
