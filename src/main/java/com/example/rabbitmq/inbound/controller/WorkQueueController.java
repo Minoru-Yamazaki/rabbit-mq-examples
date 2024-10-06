@@ -1,6 +1,6 @@
 package com.example.rabbitmq.inbound.controller;
 
-import com.example.rabbitmq.core.dto.WorkQueueMessageDto;
+import com.example.rabbitmq.inbound.dto.WorkQueueMessageDto;
 import com.example.rabbitmq.inbound.fachada.WorkQueueService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;

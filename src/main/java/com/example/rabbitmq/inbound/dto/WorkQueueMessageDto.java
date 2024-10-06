@@ -1,4 +1,4 @@
-package com.example.rabbitmq.core.dto;
+package com.example.rabbitmq.inbound.dto;
 
 import lombok.Getter;
 import lombok.Setter;
