@@ -2,7 +2,7 @@
 
 ![image](https://github.com/user-attachments/assets/4c66262e-2945-4b1d-99e9-83ddac8ff253)
 
-Aborda como enviar mensagens para diferentes filas com base em uma chave de roteamento (routing key).
+Routing aborda como enviar mensagens para diferentes filas com base em uma chave de roteamento (routing key).
 No padrão de troca "direct exchange", as mensagens são roteadas para filas específicas conforme a chave de roteamento que você define ao publicá-las.
 
 ### Conceitos principais:
