@@ -128,13 +128,13 @@ O Topic Exchange oferece um roteamento muito mais flexível, permitindo padrões
 
 ### Fluxo:
 1. Cliente (RPC Client):
-   * Envia uma mensagem de requisição para a fila RPC, especificando a tarefa a ser realizada (por exemplo, calcular um Fibonacci).
+   * Envia uma mensagem de requisição para a fila RPC, especificando a tarefa a ser realizada (por exemplo, calcular a área de um quadrado).
    * Cria uma fila temporária para receber a resposta.
    * Aguarda pela resposta na fila temporária.
 2. Servidor (RPC Server):
    * Escuta a fila RPC.
-   * Quando uma solicitação chega, o servidor processa a tarefa (exemplo: cálculo de Fibonacci).
-   * Envia a resposta de volta para a fila temporária do cliente.
+   * Quando uma solicitação chega, o servidor processa a tarefa (exemplo: cálculo da área de um quadrado).
+   * Envia a resposta de volta para a fila temporária do client.
 3. Correlações:
    * Cada requisição possui um Correlation ID exclusivo.
    * O servidor copia esse Correlation ID na resposta, permitindo ao cliente saber qual requisição gerou a resposta.
