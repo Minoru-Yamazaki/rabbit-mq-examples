@@ -30,4 +30,9 @@ public class RabbitMqRoutingImpl implements Mensageria<RoutingMessageDto> {
         }
     }
 
+    @Override
+    public RoutingMessageDto sendAndReceive(String queueName, RoutingMessageDto dto) {
+        return null;
+    }
+
 }

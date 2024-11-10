@@ -29,4 +29,10 @@ public class RabbitMqPublishSubscribeImpl implements Mensageria<PublishSubscribe
             System.out.println("Publish & Sunscribe: Erro ao enviar message: " + message);
         }
     }
+
+    @Override
+    public PublishSubscribeMessageDto sendAndReceive(String queueName, PublishSubscribeMessageDto dto) {
+        return null;
+    }
+
 }
