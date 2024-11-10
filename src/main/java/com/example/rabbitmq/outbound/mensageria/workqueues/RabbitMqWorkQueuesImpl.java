@@ -30,4 +30,9 @@ public class RabbitMqWorkQueuesImpl implements Mensageria<WorkQueueMessageDto> {
         }
     }
 
+    @Override
+    public WorkQueueMessageDto sendAndReceive(String queueName, WorkQueueMessageDto dto) {
+        return null;
+    }
+
 }

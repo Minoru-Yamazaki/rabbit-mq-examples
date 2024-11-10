@@ -30,4 +30,9 @@ public class RabbitMqTopicImpl implements Mensageria<TopicMessageDto> {
         }
     }
 
+    @Override
+    public TopicMessageDto sendAndReceive(String queueName, TopicMessageDto dto) {
+        return null;
+    }
+
 }
