@@ -26,6 +26,15 @@
 ### Exemplo de uso:
 Esse padrão é ideal para dividir a carga de trabalho em sistemas de processamento paralelo, onde várias tarefas independentes precisam ser processadas de forma eficiente, como processamento de imagens, envio de emails em massa, ou qualquer tipo de processamento intensivo.
 
+Exemplo de chamada:
+```cURL
+curl --location 'http://localhost:8080/v1/work-queues' \
+--header 'Content-Type: application/json' \
+--data '{
+    "message": "Minoru"
+}'
+```
+
 # Publish/Subscribe - Sending messages to many consumers at once
 
 ![image](https://github.com/user-attachments/assets/dfdfccb8-f329-46c7-9316-49198a85cecd)
@@ -49,6 +58,15 @@ Este padrão de Publish/Subscribe é ideal para cenários onde você deseja envi
 
 ### Conclusão:
 O Fanout Exchange oferece uma forma simples de disseminar uma mensagem para vários consumidores ao mesmo tempo, garantindo que todos eles recebam a mesma informação.
+
+Exemplo de chamada:
+```cURL
+curl --location 'http://localhost:8080/v1/publish-subscribe' \
+--header 'Content-Type: application/json' \
+--data '{
+    "message": "XPTO"
+}'
+```
 
 # Routing - Receiving messages selectively
 
@@ -74,6 +92,12 @@ No padrão de troca "direct exchange", as mensagens são roteadas para filas esp
 3. Associa cada fila ao exchange com uma chave de roteamento específica.
 4. Publica mensagens no exchange especificando uma chave de roteamento.
 5. O exchange encaminha as mensagens para a(s) fila(s) correspondente(s) à chave de roteamento.
+
+Exemplo de chamada:
+```cURL
+curl --location --request POST 'http://localhost:8080/v1/routing' \
+--data ''
+```
 
 # Topics - Receiving messages based on a pattern (topics)
 
@@ -112,6 +136,12 @@ Esse tipo de roteamento é muito útil quando você quer categorizar mensagens e
 ### Conclusão:
 O Topic Exchange oferece um roteamento muito mais flexível, permitindo padrões dinâmicos. Isso é útil para sistemas onde diferentes serviços ou componentes precisam escutar mensagens de várias categorias de uma forma mais geral, como logs de erro, de sistemas ou de aplicações.
 
+Exemplo de chamada:
+```cURL
+curl --location --request POST 'http://localhost:8080/v1/topic' \
+--data ''
+```
+
 # RPC - Request/reply pattern example
 
 ![image](https://github.com/user-attachments/assets/72e2dfe7-4240-4d62-bebf-5ee9139ac84f)
@@ -144,3 +174,9 @@ Esse padrão é útil para casos em que você precisa executar tarefas no servid
 
 ### Conclusão:
 O RPC com RabbitMQ é uma maneira eficaz de implementar chamadas de procedimento remoto, possibilitando que um cliente envie uma solicitação de tarefa a um servidor e receba a resposta correspondente. Esse padrão permite a execução remota de funções enquanto mantém a semântica de chamadas síncronas.
+
+Exemplo de chamada:
+```cURL
+curl --location 'http://localhost:8080/v1/rpc?number=3' \
+--data ''
+```
